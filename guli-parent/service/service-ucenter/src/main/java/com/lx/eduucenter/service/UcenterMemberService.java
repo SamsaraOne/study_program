@@ -21,4 +21,6 @@ public interface UcenterMemberService extends IService<UcenterMember> {
 
 
     UcenterMember selectByOpenId(String open_id);
+
+    Integer getRegisterNum(String day);
 }

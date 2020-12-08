@@ -93,5 +93,13 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         return baseMapper.selectOne(wrapper);
     }
 
+    @Override
+    public Integer getRegisterNum(String day) {
+
+
+        Integer num = baseMapper.getRegisterNum(day);
+        return num;
+    }
+
 
 }

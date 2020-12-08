@@ -14,6 +14,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * <p>
@@ -56,5 +57,12 @@ public class UcenterMemberController {
         BeanUtils.copyProperties(ucenterMember,ucenterMemberVo);
         return ucenterMemberVo;
     }
+    //statics remote api
+    @GetMapping("/numOfDay/{day}")
+    public Integer getNum(@PathVariable String day){
+        int m = centerService.getRegisterNum(day);
+        return m;
+    }
+
 }
 

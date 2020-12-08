@@ -3,10 +3,12 @@ package com.lx.eduucenter.controller;
 
 import com.lx.commonutils.JwtUtils;
 import com.lx.commonutils.R;
+import com.lx.commonutils.ordervo.UcenterMemberVo;
 import com.lx.eduucenter.entity.UcenterMember;
 import com.lx.eduucenter.entity.vo.LoginVo;
 import com.lx.eduucenter.entity.vo.RegisterVo;
 import com.lx.eduucenter.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +48,13 @@ public class UcenterMemberController {
         UcenterMember userInfo = centerService.getById(memberId);
         return R.ok().data("userInfo",userInfo);
     }
-
+    //order的远程调用
+    @PostMapping("/getUserInfo/{uid}")
+    public UcenterMemberVo getRomoteInfo(@PathVariable String uid){
+        UcenterMember ucenterMember = centerService.getById(uid);
+        UcenterMemberVo ucenterMemberVo = new UcenterMemberVo();
+        BeanUtils.copyProperties(ucenterMember,ucenterMemberVo);
+        return ucenterMemberVo;
+    }
 }
 

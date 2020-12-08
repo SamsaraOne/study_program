@@ -1,10 +1,10 @@
 package com.lx.eduorder.entity;
 
 import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
  * @since 2020-12-07
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+//@EqualsAndHashCode(callSuper = false)
+//@Accessors(chain = true)
 @TableName("t_order")
 @ApiModel(value="Order对象", description="订单")
 public class Order implements Serializable {
@@ -69,9 +69,11 @@ public class Order implements Serializable {
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 

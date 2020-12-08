@@ -3,6 +3,7 @@ package com.lx.eduService.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lx.commonutils.R;
+import com.lx.commonutils.ordervo.OrderCourseVo;
 import com.lx.eduService.entity.EduCourse;
 import com.lx.eduService.entity.EduTeacher;
 import com.lx.eduService.entity.chapter.ChapterVo;
@@ -11,6 +12,7 @@ import com.lx.eduService.entity.frontvo.CourseFrontVo;
 import com.lx.eduService.service.EduChapterService;
 import com.lx.eduService.service.EduCourseService;
 import com.lx.eduService.service.EduTeacherService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +46,14 @@ public class CourseFrontController {
 
         return R.ok().data("baseCoureInfo",courseInfo).data("chapterVideo",chapterVideo);
     }
+
+    @GetMapping("/getOrderInfo/{courseId}")
+    public OrderCourseVo getInfo(@PathVariable String courseId){
+        OrderCourseVo orderCourseVo = new OrderCourseVo();
+        BaseCourseInfo baseCourseInfo = courseService.getBaseCourseInfo(courseId);
+        BeanUtils.copyProperties(baseCourseInfo,orderCourseVo);
+        return orderCourseVo;
+    }
+
 
 }

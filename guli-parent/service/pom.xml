@@ -20,6 +20,8 @@
         <module>service-ucenter</module>
         <module>service-order</module>
         <module>service-statis</module>
+        <module>service-acl</module>
+
 
     </modules>
     <dependencies>
